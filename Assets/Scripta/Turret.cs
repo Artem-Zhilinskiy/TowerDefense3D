@@ -5,12 +5,25 @@ namespace TowerDefense3D
 {
 	public class Turret : MonoBehaviour
 	{
-		[SerializeField]
 		private Transform _target;
+
+		[Header ("Attributes")]
 		[SerializeField]
 		private float _range;
+		[SerializeField]
+		private float _fireRate;
+		private float _fireCountDown = 0f;
 
-		public string enemyTag = "Enemy";
+
+		[Header("Setup fields")]
+
+		[SerializeField]
+		private string enemyTag = "Enemy";
+		[SerializeField]
+		private Transform _partToRotate;
+		[SerializeField]
+		private float _rotateSpeed;
+
 
         private void Start()
         {
@@ -32,6 +45,38 @@ namespace TowerDefense3D
 					_nearestEnemy = _enemy;
                 }
             }
+
+			if (_nearestEnemy != null && _shortestDistance <= _range)
+            {
+				_target = _nearestEnemy.transform;
+            }
+			else
+            {
+				_target = null;
+            }
+        }
+
+        private void Update()
+        {
+			if (_target == null) return;
+
+			Vector3 _direction = _target.position - transform.position;
+			Quaternion _lookRotation = Quaternion.LookRotation(_direction);
+			Vector3 _rotation = Quaternion.Lerp(_partToRotate.rotation, _lookRotation, Time.deltaTime * _rotateSpeed).eulerAngles;
+			_partToRotate.rotation = Quaternion.Euler(0f, _rotation.y, 0f);
+
+			if (_fireCountDown <= 0)
+            {
+				Shoot();
+				_fireCountDown = 1f / _fireRate;
+            }
+
+			_fireCountDown -= Time.deltaTime;
+        }
+
+		private void Shoot()
+        {
+			Debug.Log("Shoot!");
         }
 
 
