@@ -24,6 +24,11 @@ namespace TowerDefense3D
 		[SerializeField]
 		private float _rotateSpeed;
 
+		[SerializeField]
+		private GameObject _bulletPrefab;
+		[SerializeField]
+		private Transform _firePoint;
+
 
         private void Start()
         {
@@ -76,7 +81,13 @@ namespace TowerDefense3D
 
 		private void Shoot()
         {
-			Debug.Log("Shoot!");
+			GameObject _bulletGO = (GameObject)Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
+			Bullet _bullet = _bulletGO.GetComponent<Bullet>();
+
+			if (_bullet != null)
+            {
+				_bullet.SeekTarget(_target);
+            }
         }
 
 

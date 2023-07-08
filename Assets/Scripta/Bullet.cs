@@ -1,87 +1,31 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+namespace TowerDefense3D
+{
 
-	/*
-	private Transform target;
-
-	public float speed = 70f;
-
-	public int damage = 50;
-
-	public float explosionRadius = 0f;
-	public GameObject impactEffect;
-	
-	public void Seek (Transform _target)
+	public class Bullet : MonoBehaviour
 	{
-		target = _target;
-	}
+		private Transform _target;
 
-	// Update is called once per frame
-	void Update () {
+        [SerializeField]
+        private float _speed;
 
-		if (target == null)
-		{
-			Destroy(gameObject);
-			return;
-		}
+		public void SeekTarget(Transform _transferredTarget)
+        {
+			_target = _transferredTarget;
+        }
 
-		Vector3 dir = target.position - transform.position;
-		float distanceThisFrame = speed * Time.deltaTime;
+        private void Update()
+        {
+            if (_target == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
 
-		if (dir.magnitude <= distanceThisFrame)
-		{
-			HitTarget();
-			return;
-		}
+            Vector3 _direction = _target.position - transform.position;
+            float _distanceThisFrame = _speed * Time.deltaTime;
+        }
 
-		transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-		transform.LookAt(target);
-
-	}
-
-	void HitTarget ()
-	{
-		GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-		Destroy(effectIns, 5f);
-
-		if (explosionRadius > 0f)
-		{
-			Explode();
-		} else
-		{
-			Damage(target);
-		}
-
-		Destroy(gameObject);
-	}
-
-	void Explode ()
-	{
-		Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-		foreach (Collider collider in colliders)
-		{
-			if (collider.tag == "Enemy")
-			{
-				Damage(collider.transform);
-			}
-		}
-	}
-
-	void Damage (Transform enemy)
-	{
-		Enemy e = enemy.GetComponent<Enemy>();
-
-		if (e != null)
-		{
-			e.TakeDamage(damage);
-		}
-	}
-
-	void OnDrawGizmosSelected ()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, explosionRadius);
-	}
-	*/
+    }
 }
