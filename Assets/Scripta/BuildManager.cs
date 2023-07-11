@@ -11,8 +11,17 @@ namespace TowerDefense3D
             if (_instance != null)
             {
                 Debug.LogError("More than one BuildManager in scene");
+                return;
             }
             _instance = this;
+        }
+
+        [SerializeField]
+        private GameObject _standardTurretPrefab;
+
+        private void Start()
+        {
+            _turretToBuild = _standardTurretPrefab;
         }
 
         private GameObject _turretToBuild;

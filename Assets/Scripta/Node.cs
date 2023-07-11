@@ -6,6 +6,8 @@ namespace TowerDefense3D
     {
         [SerializeField]
         private Color _hoverColor;
+        [SerializeField]
+        Vector3 _positionOffset;
 
         private GameObject _turret = null;
 
@@ -26,7 +28,8 @@ namespace TowerDefense3D
                 return;
             }
 
-            //Build a turret
+            GameObject _turretToBuild = BuildManager._instance.GetTurretToBuild();
+            _turret = (GameObject)Instantiate(_turretToBuild, transform.position + _positionOffset, transform.rotation);
         }
         private void OnMouseEnter()
         {
