@@ -16,18 +16,18 @@ namespace TowerDefense3D
             _instance = this;
         }
 
-        [SerializeField]
-        private GameObject _standardTurretPrefab;
-
-        private void Start()
-        {
-            _turretToBuild = _standardTurretPrefab;
-        }
+        public GameObject _standardTurretPrefab;
+        public GameObject _anotherTurretPrefab;
 
         private GameObject _turretToBuild;
         public GameObject GetTurretToBuild()
         {
             return _turretToBuild;
+        }
+
+        public void SetTurretRoBuild(GameObject _turret)
+        {
+            _turretToBuild = _turret;
         }
     }
 }
