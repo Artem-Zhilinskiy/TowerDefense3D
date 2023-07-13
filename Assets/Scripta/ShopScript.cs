@@ -16,10 +16,10 @@ namespace TowerDefense3D
             _buildManager.SetTurretRoBuild(_buildManager._standardTurretPrefab);
         }
 
-        public void PurchaseAnotherTurret()
+        public void PurchaseMissileLauncher()
         {
-            Debug.Log("Another turret selected");
-            _buildManager.SetTurretRoBuild(_buildManager._anotherTurretPrefab);
+            Debug.Log("Missile launcher selected");
+            _buildManager.SetTurretRoBuild(_buildManager._missileLauncherPrefab);
         }
     }
 }

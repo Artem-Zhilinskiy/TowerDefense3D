@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _standardTurretPrefab: {fileID: 174700, guid: 64f2ae8c83ee6bb49a47a2d3f43d307e, type: 3}
-  _anotherTurretPrefab: {fileID: 174700, guid: 64f2ae8c83ee6bb49a47a2d3f43d307e, type: 3}
+  _missileLauncherPrefab: {fileID: 1000010346017410, guid: 28886474c13dfff4cb183350df126081, type: 3}
 --- !u!1001 &157027503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7610,7 +7610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.53729963, y: 0, z: 0, w: 0.8433915}
-  m_LocalPosition: {x: 37.5, y: 80.8, z: -90.3}
+  m_LocalPosition: {x: 37.5, y: 80.8, z: -90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7636,7 +7636,7 @@ MonoBehaviour:
   maxY: 80
   minX: -10
   maxX: 80
-  minZ: -80
+  minZ: -90
   maxZ: 0
 --- !u!1001 &966112180
 PrefabInstance:
@@ -9639,7 +9639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456458826170016074, guid: 41cfa984ea80e71478fb2eb5cbcd598c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurchaseAnotherTurret
+      value: PurchaseMissileLauncher
       objectReference: {fileID: 0}
     - target: {fileID: 5456458826170016074, guid: 41cfa984ea80e71478fb2eb5cbcd598c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -9651,8 +9651,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5903990906539254987, guid: 41cfa984ea80e71478fb2eb5cbcd598c, type: 3}
       propertyPath: m_Name
-      value: AnotherTurretItem
+      value: MissileLauncherItem
       objectReference: {fileID: 0}
+    - target: {fileID: 8818132177161002246, guid: 41cfa984ea80e71478fb2eb5cbcd598c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 786e4d9fe80788d4e94e694d9cb2b58b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -17,7 +17,7 @@ namespace TowerDefense3D
         }
 
         public GameObject _standardTurretPrefab;
-        public GameObject _anotherTurretPrefab;
+        public GameObject _missileLauncherPrefab;
 
         private GameObject _turretToBuild;
         public GameObject GetTurretToBuild()
