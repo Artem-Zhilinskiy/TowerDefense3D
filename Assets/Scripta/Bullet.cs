@@ -44,7 +44,7 @@ namespace TowerDefense3D
         private void HitTarget()
         {
             GameObject _effectInstant = (GameObject)Instantiate(_impactEffect, transform.position, transform.rotation);
-            Destroy(_effectInstant, 3f);
+            Destroy(_effectInstant, 5f);
 
             if (_explosionRadius > 0f)
             {

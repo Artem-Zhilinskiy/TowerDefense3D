@@ -10,7 +10,8 @@ namespace TowerDefense3D
         [SerializeField]
         Vector3 _positionOffset;
 
-        private GameObject _turret = null;
+        [Header("Optional")]
+        public GameObject _turret = null;
 
         private Renderer _renderer;
         private Color _startColor;
@@ -25,9 +26,14 @@ namespace TowerDefense3D
             _buildManager = BuildManager._instance;
         }
 
+        public Vector3 GetBuildPosition()
+        {
+            return transform.position + _positionOffset;
+        }
+
         private void OnMouseDown()
         {
-            if (_buildManager.GetTurretToBuild() == null)
+            if (!_buildManager._canBuild)
             {
                 return;
             }
@@ -37,16 +43,14 @@ namespace TowerDefense3D
                 Debug.Log("Can't build there");
                 return;
             }
-
-            GameObject _turretToBuild = _buildManager.GetTurretToBuild();
-            _turret = (GameObject)Instantiate(_turretToBuild, transform.position + _positionOffset, transform.rotation);
+            _buildManager.BuildTurretOn(this);
         }
         private void OnMouseEnter()
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
-            if (_buildManager.GetTurretToBuild() == null)
+            if (!_buildManager._canBuild)
             {
                 return;
             }
