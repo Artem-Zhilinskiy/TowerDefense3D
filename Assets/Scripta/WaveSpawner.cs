@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using TMPro;
+using UnityEngine.UI;
 
 namespace TowerDefense3D
 {
@@ -20,7 +20,7 @@ namespace TowerDefense3D
         private int _waveIndex = 0;
 
         [SerializeField]
-        private TMP_Text _waveCountDownText;
+        private Text _waveCountDownText;
 
         [SerializeField]
         private float _timeBetweenWaves;
@@ -32,10 +32,10 @@ namespace TowerDefense3D
                 StartCoroutine(SpawnWave());
                 _countdown = _timeBetweenWaves;
             }
-
+            _countdown = Mathf.Clamp(_countdown, 0f, Mathf.Infinity);
             _countdown -= Time.deltaTime;
 
-            _waveCountDownText.text = Mathf.Round(_countdown).ToString();
+            _waveCountDownText.text = string.Format("{0:00.00}", _countdown);
         }
 
         IEnumerator SpawnWave()

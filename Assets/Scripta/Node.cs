@@ -8,6 +8,8 @@ namespace TowerDefense3D
         [SerializeField]
         private Color _hoverColor;
         [SerializeField]
+        private Color _notEnoughMoneyColor;
+        [SerializeField]
         Vector3 _positionOffset;
 
         [Header("Optional")]
@@ -54,7 +56,15 @@ namespace TowerDefense3D
             {
                 return;
             }
-            _renderer.material.color = _hoverColor;
+
+            if (_buildManager._hasMoney)
+            {
+                _renderer.material.color = _hoverColor;
+            }
+            else
+            {
+                _renderer.material.color = _notEnoughMoneyColor;
+            }
         }
 
         private void OnMouseExit()

@@ -22,6 +22,7 @@ namespace TowerDefense3D
         private TurretShablon _turretToBuild;
 
         public bool _canBuild { get { return _turretToBuild != null; } }
+        public bool _hasMoney { get { return PlayerStats._money >= _turretToBuild._cost;} }
 
         public void BuildTurretOn(Node node)
         {
