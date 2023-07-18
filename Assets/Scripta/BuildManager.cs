@@ -18,6 +18,8 @@ namespace TowerDefense3D
 
         public GameObject _standardTurretPrefab;
         public GameObject _missileLauncherPrefab;
+        [SerializeField]
+        private GameObject _buildEffect;
 
         private TurretShablon _turretToBuild;
 
@@ -36,6 +38,9 @@ namespace TowerDefense3D
 
             GameObject _turret = (GameObject)Instantiate(_turretToBuild._prefab, node.GetBuildPosition(), Quaternion.identity);
             node._turret = _turret;
+
+            GameObject _effect = (GameObject)Instantiate(_buildEffect, node.GetBuildPosition(), Quaternion.identity);
+            Destroy(_effect, 5f);
 
             Debug.Log("Turret is built! Money left: " + PlayerStats._money);
         }
