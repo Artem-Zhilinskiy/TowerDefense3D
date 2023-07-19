@@ -10,6 +10,8 @@ namespace TowerDefense3D
         [SerializeField]
         private float _speed;
         [SerializeField]
+        private int _damage;
+        [SerializeField]
         private float _explosionRadius;
 
         [SerializeField]
@@ -52,7 +54,7 @@ namespace TowerDefense3D
             }
             else
             {
-                Destroy(_target.gameObject);
+                Damage(_target);
             }
             Destroy(gameObject);
         }
@@ -71,7 +73,11 @@ namespace TowerDefense3D
 
         private void Damage(Transform enemy)
         {
-            Destroy(enemy.gameObject);
+            Enemy e = enemy.GetComponent<Enemy>();
+            if (e != null)
+            {
+                e.TakeDamage(_damage);
+            }
         }
 
         private void OnDrawGizmosSelected()
