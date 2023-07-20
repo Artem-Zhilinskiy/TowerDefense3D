@@ -90,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000011893897110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.5, y: 2, z: -3.97}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -114,7 +114,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -369,7 +369,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -422,7 +422,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5012,19 +5012,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e58e17ccca86642a73d908b186c94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 20
-  bulletPrefab: {fileID: 0}
-  fireRate: 1
-  useLaser: 1
-  damageOverTime: 30
-  slowAmount: 0.5
-  lineRenderer: {fileID: 120000012026282110}
-  impactEffect: {fileID: 198000014294947900}
-  impactLight: {fileID: 108000012254394918}
+  _range: 20
+  _fireRate: 1
+  _bulletPrefab: {fileID: 0}
+  _useLaser: 1
+  _lineRenderer: {fileID: 120000012026282110}
   enemyTag: Enemy
-  partToRotate: {fileID: 4000011689787018}
-  turnSpeed: 10
-  firePoint: {fileID: 4000013440857102}
+  _partToRotate: {fileID: 4000011689787018}
+  _rotateSpeed: 10
+  _firePoint: {fileID: 4000013440857102}
 --- !u!120 &120000012026282110
 LineRenderer:
   serializedVersion: 2
@@ -5179,14 +5175,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013637573146}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5459,7 +5455,7 @@ ParticleSystem:
         m_RotationOrder: 0
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5512,7 +5508,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:

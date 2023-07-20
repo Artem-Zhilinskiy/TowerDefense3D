@@ -8,6 +8,8 @@ namespace TowerDefense3D
         private TurretShablon _standardTurret;
         [SerializeField]
         private TurretShablon _missileLauncher;
+        [SerializeField]
+        private TurretShablon _laserBeam;
 
         BuildManager _buildManager;
 
@@ -25,6 +27,12 @@ namespace TowerDefense3D
         {
             Debug.Log("Missile launcher selected");
             _buildManager.SelectTurretToBuild(_missileLauncher);
+        }
+
+        public void SelectLaserBeam()
+        {
+            Debug.Log("Laser Beam selected");
+            _buildManager.SelectTurretToBuild(_laserBeam);
         }
     }
 }

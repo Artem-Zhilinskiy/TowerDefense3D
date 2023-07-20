@@ -16,8 +16,6 @@ namespace TowerDefense3D
             _instance = this;
         }
 
-        public GameObject _standardTurretPrefab;
-        public GameObject _missileLauncherPrefab;
         [SerializeField]
         private GameObject _buildEffect;
 
