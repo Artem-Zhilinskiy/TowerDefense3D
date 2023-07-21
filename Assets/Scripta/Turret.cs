@@ -22,6 +22,10 @@ namespace TowerDefense3D
 		private bool _useLaser = false;
 		[SerializeField]
 		private LineRenderer _lineRenderer;
+		[SerializeField]
+		private ParticleSystem _impactEffect;
+		[SerializeField]
+		private Light _impactLight;
 
 		[Header("Setup fields")]
 
@@ -38,7 +42,7 @@ namespace TowerDefense3D
         private void Start()
         {
 			InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        }
+		}
 
         private void UpdateTarget()
         {
@@ -75,6 +79,9 @@ namespace TowerDefense3D
 					if (_lineRenderer.enabled)
                     {
 						_lineRenderer.enabled = false;
+						_impactEffect.Stop();
+						_impactLight.enabled = false;
+
                     }
                 }
 				return;
@@ -122,9 +129,17 @@ namespace TowerDefense3D
 			if (!_lineRenderer.enabled)
 			{
 				_lineRenderer.enabled = true;
+				_impactEffect.Play();
+				_impactLight.enabled = true;
 			}
-				_lineRenderer.SetPosition(0, _firePoint.position);
-				_lineRenderer.SetPosition(1, _target.position);
+			_lineRenderer.SetPosition(0, _firePoint.position);
+			_lineRenderer.SetPosition(1, _target.position);
+
+			Vector3 _direction = _firePoint.position - _target.position;
+			_impactEffect.transform.rotation = Quaternion.LookRotation(_direction);
+			_impactEffect.transform.position = _target.position + _direction.normalized;
+
+			_impactEffect.transform.position = _target.position;
         }
 
         private void OnDrawGizmosSelected()

@@ -114,7 +114,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5017,6 +5017,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 0}
   _useLaser: 1
   _lineRenderer: {fileID: 120000012026282110}
+  _impactEffect: {fileID: 198000014294947900}
+  _impactLight: {fileID: 108000012254394918}
   enemyTag: Enemy
   _partToRotate: {fileID: 4000011689787018}
   _rotateSpeed: 10
