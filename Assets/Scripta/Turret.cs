@@ -6,6 +6,7 @@ namespace TowerDefense3D
 	public class Turret : MonoBehaviour
 	{
 		private Transform _target;
+		private Enemy _targetEnemyComponent;
 
 		[Header ("General")]
 		[SerializeField]
@@ -20,6 +21,10 @@ namespace TowerDefense3D
 		[Header("Use Laser")]
 		[SerializeField]
 		private bool _useLaser = false;
+		[SerializeField]
+		private int _damageOverTime;
+		[SerializeField]
+		private float _slowAmount;
 		[SerializeField]
 		private LineRenderer _lineRenderer;
 		[SerializeField]
@@ -63,6 +68,7 @@ namespace TowerDefense3D
 			if (_nearestEnemy != null && _shortestDistance <= _range)
             {
 				_target = _nearestEnemy.transform;
+				_targetEnemyComponent = _nearestEnemy.GetComponent<Enemy>();
             }
 			else
             {
@@ -126,6 +132,9 @@ namespace TowerDefense3D
 
 		private void LaserShoot()
         {
+			_targetEnemyComponent.TakeDamage(_damageOverTime * Time.deltaTime);
+			_targetEnemyComponent.Slow(_slowAmount);
+
 			if (!_lineRenderer.enabled)
 			{
 				_lineRenderer.enabled = true;

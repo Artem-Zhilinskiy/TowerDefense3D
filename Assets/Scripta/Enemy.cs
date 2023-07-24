@@ -5,26 +5,20 @@ namespace TowerDefense3D
 {
     public class Enemy : MonoBehaviour
     {
-        public float _speed = 10f;
+        [SerializeField]
+        private float _health;
 
         [SerializeField]
-        private int _health;
-
-        [SerializeField]
-        private int _value;
+        private int _worth;
 
         [SerializeField]
         private GameObject _deathEffect;
 
-        private Transform _target;
-        private int _wavePointIndex = 0;
+        public float _startSpeed;
+        [HideInInspector]
+        public float _speed;
 
-        private void Start()
-        {
-            _target = Waypoints.points[0];
-        }
-
-        public void TakeDamage(int amount)
+        public void TakeDamage(float amount)
         {
             _health -= amount;
             if (_health <= 0)
@@ -33,41 +27,24 @@ namespace TowerDefense3D
             }
         }
 
+        private void Start()
+        {
+            _speed = _startSpeed;
+        }
+
+        public void Slow(float _pct)
+        {
+            _speed = _startSpeed * (1f - _pct);
+        }
+
         private void Die()
         {
-            PlayerStats._money += _value;
+            PlayerStats._money += _worth;
             GameObject _effect = (GameObject)Instantiate(_deathEffect, transform.position, Quaternion.identity);
             Destroy(_effect, 5f);
             Destroy(gameObject);
         }
 
-        private void Update()
-        {
-            Vector3 _direction = _target.position - transform.position;
-            transform.Translate(_direction.normalized * _speed * Time.deltaTime, Space.World);
 
-            if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
-            {
-                GetNextWayPoint();
-            }
-        }
-
-        private void GetNextWayPoint()
-        {
-            if (_wavePointIndex >= Waypoints.points.Length - 1)
-            {
-                EndPath();
-                return;
-            }    
-
-            _wavePointIndex++;
-            _target = Waypoints.points[_wavePointIndex];
-        }
-
-        private void EndPath()
-        {
-            PlayerStats._lives--;
-            Destroy(gameObject);
-        }
     }
 }
