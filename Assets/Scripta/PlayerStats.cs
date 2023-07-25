@@ -14,10 +14,14 @@ namespace TowerDefense3D
         [SerializeField]
         private int _startLives;
 
+        public static int _rounds;
+
         private void Start()
         {
             _money = _startMoney;
             _lives = _startLives;
+
+            _rounds = 0;
         }
     }
 }

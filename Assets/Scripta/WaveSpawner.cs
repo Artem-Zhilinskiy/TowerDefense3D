@@ -41,6 +41,7 @@ namespace TowerDefense3D
         IEnumerator SpawnWave()
         {
             _waveIndex++;
+            PlayerStats._rounds++;
 
             for (int i = 0; i < _waveIndex; i++)
             {

@@ -29,6 +29,11 @@ namespace TowerDefense3D
 
         private void Update()
         {
+            if (GameManager._gameIsOver)
+            {
+                this.enabled = false;
+                return;
+            }
             if (Input.GetKey("w")/* || (Input.mousePosition.y >= Screen.height - _panBorderThickness)*/)
             {
                 transform.Translate(Vector3.forward * _panSpeed * Time.deltaTime, Space.World);

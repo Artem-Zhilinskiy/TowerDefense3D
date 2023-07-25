@@ -6,11 +6,19 @@ namespace TowerDefense3D
 {
     public class GameManager : MonoBehaviour
     {
-        private bool _gameEnded = false;
+        public static bool _gameIsOver;
+
+        [SerializeField]
+        private GameObject _gameOverUI;
+
+        private void Start()
+        {
+            _gameIsOver = false;
+        }
 
         private void Update()
         {
-            if (_gameEnded) return;
+            if (_gameIsOver) return;
             if (PlayerStats._lives <= 0)
             {
                 EndGame();
@@ -19,8 +27,8 @@ namespace TowerDefense3D
 
         private void EndGame()
         {
-            _gameEnded = true;
-            Debug.Log("Game over!");
+            _gameIsOver = true;
+            _gameOverUI.SetActive(true);
         }
     }
 }
