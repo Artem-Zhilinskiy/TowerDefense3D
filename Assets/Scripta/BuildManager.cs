@@ -18,6 +18,10 @@ namespace TowerDefense3D
 
         [SerializeField]
         private GameObject _buildEffect;
+        private Node _selectedNode;
+        
+        [SerializeField]
+        private NodeUI _nodeUI;
 
         private TurretShablon _turretToBuild;
 
@@ -43,9 +47,30 @@ namespace TowerDefense3D
             Debug.Log("Turret is built! Money left: " + PlayerStats._money);
         }
 
+        public void SelectNode(Node _node)
+        {
+            if (_selectedNode == _node)
+            {
+                DeselectNode();
+                return;
+            }
+
+            _selectedNode = _node;
+            _turretToBuild = null;
+
+            _nodeUI.SetTarget(_node);
+        }
+
         public void SelectTurretToBuild(TurretShablon _turret)
         {
             _turretToBuild = _turret;
+            DeselectNode();
+        }
+
+        public void DeselectNode()
+        {
+            _selectedNode = null;
+            _nodeUI.Hide();
         }
     }
 }

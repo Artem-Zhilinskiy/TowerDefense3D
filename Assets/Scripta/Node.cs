@@ -35,16 +35,17 @@ namespace TowerDefense3D
 
         private void OnMouseDown()
         {
+            if (_turret != null)
+            {
+                _buildManager.SelectNode(this);
+                return;
+            }
+
             if (!_buildManager._canBuild)
             {
                 return;
             }
 
-            if (_turret != null)
-            {
-                Debug.Log("Can't build there");
-                return;
-            }
             _buildManager.BuildTurretOn(this);
         }
         private void OnMouseEnter()
