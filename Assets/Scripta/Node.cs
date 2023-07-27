@@ -12,8 +12,12 @@ namespace TowerDefense3D
         [SerializeField]
         Vector3 _positionOffset;
 
-        [Header("Optional")]
-        public GameObject _turret = null;
+        [HideInInspector]
+        public GameObject _turret;
+        [HideInInspector]
+        public TurretShablon turretShablon;
+        [HideInInspector]
+        public bool _isUpgraded = false;
 
         private Renderer _renderer;
         private Color _startColor;
@@ -45,9 +49,44 @@ namespace TowerDefense3D
             {
                 return;
             }
-
-            _buildManager.BuildTurretOn(this);
+            BuildTurret(_buildManager.GetTurretToBuild());
         }
+
+        private void BuildTurret(TurretShablon _turretShablon)
+        {
+            if (PlayerStats._money < _turretShablon._cost)
+            {
+                Debug.Log("Not enough money to build that");
+                return;
+            }
+            PlayerStats._money -= _turretShablon._cost;
+            GameObject _turretToBuild = (GameObject)Instantiate(_turretShablon._prefab, GetBuildPosition(), Quaternion.identity);
+            _turret = _turretToBuild;
+            turretShablon = _turretShablon;
+            GameObject _effect = (GameObject)Instantiate(_buildManager._buildEffect, GetBuildPosition(), Quaternion.identity);
+            Destroy(_effect, 5f);
+            Debug.Log("Turret is built!");
+        }
+
+        public void UpgradeTurret()
+        {
+            if (PlayerStats._money < turretShablon._upgradeCost)
+            {
+                Debug.Log("Not enough money to upgrade that");
+                return;
+            }
+            PlayerStats._money -= turretShablon._upgradeCost;
+            //Get rid of the old turret.
+            Destroy(_turret);
+            //Build an upgraded one.
+            GameObject _turretToBuild = (GameObject)Instantiate(turretShablon._upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+            _turret = _turretToBuild;
+            GameObject _effect = (GameObject)Instantiate(_buildManager._buildEffect, GetBuildPosition(), Quaternion.identity);
+            Destroy(_effect, 5f);
+            _isUpgraded = true;
+            Debug.Log("Turret upgraded!");
+        }
+
         private void OnMouseEnter()
         {
             if (EventSystem.current.IsPointerOverGameObject())

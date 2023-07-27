@@ -8,5 +8,8 @@ namespace TowerDefense3D
     {
         public GameObject _prefab;
         public int _cost;
+
+        public GameObject _upgradedPrefab;
+        public int _upgradeCost;
     }
 }
