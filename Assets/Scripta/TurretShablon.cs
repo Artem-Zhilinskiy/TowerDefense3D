@@ -11,5 +11,10 @@ namespace TowerDefense3D
 
         public GameObject _upgradedPrefab;
         public int _upgradeCost;
+
+        public int GetSellAmount()
+        {
+            return _cost / 2;
+        }
     }
 }

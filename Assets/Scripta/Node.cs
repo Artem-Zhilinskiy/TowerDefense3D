@@ -87,6 +87,15 @@ namespace TowerDefense3D
             Debug.Log("Turret upgraded!");
         }
 
+        public void SellTurret()
+        {
+            PlayerStats._money += turretShablon.GetSellAmount();
+            GameObject _effect = (GameObject)Instantiate(_buildManager._sellEffect, GetBuildPosition(), Quaternion.identity);
+            Destroy(_effect, 5f);
+            Destroy(_turret);
+            turretShablon = null;
+        }
+
         private void OnMouseEnter()
         {
             if (EventSystem.current.IsPointerOverGameObject())

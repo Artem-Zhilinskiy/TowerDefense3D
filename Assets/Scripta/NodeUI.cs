@@ -16,6 +16,10 @@ namespace TowerDefense3D
         private TextMeshProUGUI _upgradeCost;
         [SerializeField]
         private Button _upgradeButton;
+        [SerializeField]
+        private TextMeshProUGUI _sellAmount;
+        [SerializeField]
+        private Button _sellButton;
 
         public void SetTarget(Node _setTarget)
         {
@@ -31,6 +35,7 @@ namespace TowerDefense3D
                 _upgradeCost.text = "Done";
                 _upgradeButton.interactable = false;
             }
+            _sellAmount.text = "$ " + _target.turretShablon.GetSellAmount();
             _ui.SetActive(true);
         }
 
@@ -42,6 +47,12 @@ namespace TowerDefense3D
         public void Upgrade()
         {
             _target.UpgradeTurret();
+            BuildManager._instance.DeselectNode();
+        }
+
+        public void Sell()
+        {
+            _target.SellTurret();
             BuildManager._instance.DeselectNode();
         }
     }

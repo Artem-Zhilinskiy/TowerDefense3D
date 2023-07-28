@@ -18,6 +18,7 @@ namespace TowerDefense3D
 
         [SerializeField]
         public GameObject _buildEffect;
+        public GameObject _sellEffect;
         private Node _selectedNode;
         
         [SerializeField]
