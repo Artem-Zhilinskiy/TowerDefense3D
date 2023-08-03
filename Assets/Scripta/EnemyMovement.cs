@@ -45,6 +45,7 @@ namespace TowerDefense3D
         private void EndPath()
         {
             PlayerStats._lives--;
+            WaveSpawner._enemiesAlive--;
             Destroy(gameObject);
         }
     }

@@ -9,19 +9,19 @@ namespace TowerDefense3D
         [SerializeField]
         private TextMeshProUGUI _roundsText;
 
-        private void OnEnable()
-        {
-            _roundsText.text = PlayerStats._rounds.ToString();
-        }
+        [SerializeField]
+        private SceneFader _sceneFader;
+
+        private string _menuSceneName = "MainMenu";
 
         public void Retry()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            _sceneFader.FadeTo(SceneManager.GetActiveScene().name);
         }
 
         public void Menu()
         {
-            Debug.Log("Menu");
+            _sceneFader.FadeTo(_menuSceneName);
         }
     }
 }

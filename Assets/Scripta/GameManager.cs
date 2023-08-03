@@ -10,6 +10,8 @@ namespace TowerDefense3D
 
         [SerializeField]
         private GameObject _gameOverUI;
+        [SerializeField]
+        private GameObject _completeLevelUI;
 
         private void Start()
         {
@@ -29,6 +31,12 @@ namespace TowerDefense3D
         {
             _gameIsOver = true;
             _gameOverUI.SetActive(true);
+        }
+
+        public void WinLevel()
+        {
+            _gameIsOver = true;
+            _completeLevelUI.SetActive(true);
         }
     }
 }
