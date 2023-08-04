@@ -16,8 +16,10 @@ namespace TowerDefense3D
         {
             _target = Waypoints.points[0];
             _enemy = GetComponent<Enemy>();
+            StartCoroutine(EnemyMovementCoroutine());
         }
 
+        /*
         private void Update()
         {
             Vector3 _direction = _target.position - transform.position;
@@ -28,6 +30,23 @@ namespace TowerDefense3D
                 GetNextWayPoint();
             }
             _enemy._speed = _enemy._startSpeed;
+        }
+        */
+
+        private IEnumerator EnemyMovementCoroutine()
+        {
+            while (true)
+            {
+                Vector3 _direction = _target.position - transform.position;
+                transform.Translate(_direction.normalized * _enemy._speed * Time.deltaTime, Space.World);
+
+                if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
+                {
+                    GetNextWayPoint();
+                }
+                _enemy._speed = _enemy._startSpeed;
+                yield return null;
+            }
         }
 
         private void GetNextWayPoint()
@@ -46,6 +65,7 @@ namespace TowerDefense3D
         {
             PlayerStats._lives--;
             WaveSpawner._enemiesAlive--;
+            StopCoroutine(EnemyMovementCoroutine());
             Destroy(gameObject);
         }
     }

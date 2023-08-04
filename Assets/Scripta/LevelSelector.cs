@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 
 namespace TowerDefense3D
@@ -11,25 +12,32 @@ namespace TowerDefense3D
 
         public Button[] _levelButtons;
 
+        private byte[] _save = null;
+
         private void Start()
         {
-            int _levelReached = PlayerPrefs.GetInt("levelReached", 1); //Переделать на WryteAllBytes
-            for (int i = 0; i < _levelButtons.Length; i++)
+            //int _levelReached = PlayerPrefs.GetInt("levelReached", 1); 
+            if (File.Exists(Path.Combine(Application.persistentDataPath, "TowerDefense3D")))
             {
-                if (i+1 > _levelReached)
+                _save = File.ReadAllBytes(Path.Combine(Application.persistentDataPath, "TowerDefense3D"));
+                for (int i = 1; i < _levelButtons.Length; i++)
                 {
-                    _levelButtons[i].interactable = false;
-                }
-                else
-                {
-                    _levelButtons[i].interactable = true;
+                    //if (i+1 > _save[0])
+                    if (i > _save[0])
+                    {
+                        _levelButtons[i].interactable = false;
+                    }
+                    else
+                    {
+                        _levelButtons[i].interactable = true;
+                    }
                 }
             }
         }
 
-        public void Select (string _levelName)
+        public void Select (int _levelIndex)
         {
-            _sceneFader.FadeTo(_levelName);
+            _sceneFader.FadeTo(_levelIndex);
         }
     }
 }

@@ -17,9 +17,9 @@ namespace TowerDefense3D
             StartCoroutine(FadeIn());
         }
 
-        public void FadeTo(string scene)
+        public void FadeTo(int _sceneIndex)
         {
-            StartCoroutine(FadeOut(scene));
+            StartCoroutine(FadeOut(_sceneIndex));
         }
 
         private IEnumerator FadeIn()
@@ -35,7 +35,7 @@ namespace TowerDefense3D
             }
         }
 
-        private IEnumerator FadeOut(string scene)
+        private IEnumerator FadeOut(int _sceneIndex)
         {
             float t = 0f;
 
@@ -47,7 +47,7 @@ namespace TowerDefense3D
                 yield return 0;
             }
 
-            SceneManager.LoadScene(scene);
+            SceneManager.LoadScene(_sceneIndex);
         }
     }
 }

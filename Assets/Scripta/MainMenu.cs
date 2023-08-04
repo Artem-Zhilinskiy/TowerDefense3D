@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace TowerDefense3D
 {
     public class MainMenu : MonoBehaviour
     {
         [SerializeField]
-        private string _levelToLoad = "MainLevel";
+        private int _levelToLoad;
 
         [SerializeField]
         private SceneFader _sceneFader;

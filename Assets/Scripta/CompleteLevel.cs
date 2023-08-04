@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace TowerDefense3D
 {
@@ -10,22 +9,24 @@ namespace TowerDefense3D
         [SerializeField]
         private SceneFader _sceneFader;
 
-        private string _menuSceneName = "MainMenu";
+        private int _menuSceneIndex = 0;
 
         [SerializeField]
-        private string _nextLevel = "Level2";
+        private int _nextScene;
         [SerializeField]
-        private int _levelToUnlock = 2;
+        private byte _levelToUnlock;
 
         public void Continue()
         {
-            PlayerPrefs.SetInt("levelReached", _levelToUnlock);
-            _sceneFader.FadeTo(_nextLevel);
+            //PlayerPrefs.SetInt("levelReached", _levelToUnlock);
+            byte[] _save = new byte[] { _levelToUnlock };
+            File.WriteAllBytes(Path.Combine(Application.persistentDataPath, "TowerDefense3D"), _save);
+            _sceneFader.FadeTo(_nextScene);
         }
 
         public void Menu()
         {
-            _sceneFader.FadeTo(_menuSceneName);
+            _sceneFader.FadeTo(_menuSceneIndex);
         }
     }
 }

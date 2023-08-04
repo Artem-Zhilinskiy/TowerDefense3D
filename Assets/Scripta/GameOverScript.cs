@@ -12,16 +12,17 @@ namespace TowerDefense3D
         [SerializeField]
         private SceneFader _sceneFader;
 
-        private string _menuSceneName = "MainMenu";
+        private int _menuSceneIndex = 0;
 
         public void Retry()
         {
-            _sceneFader.FadeTo(SceneManager.GetActiveScene().name);
+            WaveSpawner._enemiesAlive = 0;
+            _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void Menu()
         {
-            _sceneFader.FadeTo(_menuSceneName);
+            _sceneFader.FadeTo(_menuSceneIndex);
         }
     }
 }

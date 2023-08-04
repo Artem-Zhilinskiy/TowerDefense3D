@@ -11,7 +11,7 @@ namespace TowerDefense3D
         [SerializeField]
         private SceneFader _sceneFader;
 
-        private string _menuSceneName = "MainMenu";
+        private int _menuSceneIndex = 0;
 
         public void Update()
         {
@@ -33,19 +33,20 @@ namespace TowerDefense3D
             {
                 Time.timeScale = 1f;
             }
+            WaveSpawner._enemiesAlive = 0;
         }
 
         public void Retry()
         {
             Toggle();
-            _sceneFader.FadeTo(SceneManager.GetActiveScene().name);
+            _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void Menu()
         {
             Toggle();
-            _sceneFader.FadeTo(_menuSceneName);
+            _sceneFader.FadeTo(_menuSceneIndex);
         }
     }
 }
